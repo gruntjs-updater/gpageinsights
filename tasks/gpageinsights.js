@@ -47,15 +47,17 @@ module.exports = function(grunt) {
       var errors = [];
       for(res in result.formattedResults.ruleResults){
         verify = options['verify_' + res];
-        //console.log('Rule: ' + res + " :" + result.formattedResults.ruleResults[res].ruleImpact + ('. verify_' + res) + " Verify: " + verify);        
+        //console.log('Rule: ' + res + " :" + result.formattedResults.ruleResults[res].ruleImpact + ('. verify_' + res) + " Verify: " + verify);
+        //score of zero should always pass
         if(verify !== undefined && verify !== null && (result.formattedResults.ruleResults[res].ruleImpact !== 0 && 
-            result.formattedResults.ruleResults[res].ruleImpact !== verify.ruleImpact)){
+            result.formattedResults.ruleResults[res].ruleImpact !== verify)){
           errors.push(res + " test failed. Actual ruleImpact: " + 
-              result.formattedResults.ruleResults[res].ruleImpact + ". Expected: " + verify);
+              result.formattedResults.ruleResults[res].ruleImpact + ". Expected: " + verify);          
         }
       }
       if(errors.length !== 0){
-        grunt.fatal(errors.join("\n"));        
+        grunt.log.error(errors.join("\n"));
+        grunt.fatal('One or more criteria failed. Please see above lines for detais');        
       }
       
       return done(result);      

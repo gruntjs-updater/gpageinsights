@@ -33,7 +33,10 @@ module.exports = function(grunt) {
       default_options: {
         options: {
           verify_MinifyCss: 0,
-          verify_MinifyJavaScript: 0,
+          verify_MinifyJavaScript: 1,
+          verify_LeverageBrowserCaching: 4,
+          verify_MinimizeRenderBlockingResources: 8,
+          verify_OptimizeImages: 4,
           url: 'http://prasun.io'
         },
         files: {
