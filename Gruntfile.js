@@ -43,13 +43,46 @@ module.exports = function(grunt) {
           'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
         }
       }      
-    },
+    },        
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js']
-    }
-
+    mocha_istanbul:{
+      coverage : {
+        src : 'test', // the folder, not the files
+        options : {
+          mask : '*test.js',
+          timeout : 30000,
+          reporter : 'spec',
+          coverageFolder : 'test/coverage',
+          check : {
+            lines : 100,
+            statements : 100
+          }
+        }
+      },
+      coveralls : {
+        src : 'test', // the folder, not the files
+        options : {
+          mask : '*test.js',
+          timeout : 30000,
+          reporter : 'spec',
+          coverage : true,
+          coverageFolder : 'test/coverage',
+          check : {
+            lines : 100,
+            statements : 100
+          }
+        }
+      }    
+    }  
+  });
+  
+  grunt.event.on('coverage', function(lcov, done) {
+    require('coveralls').handleInput(lcov, function(err) {
+      if (err) {
+        return done(err);
+      }
+      done();
+    });
   });
 
   // Actually load this plugin's task(s).
@@ -58,13 +91,17 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
+  
+  grunt.registerTask('testCoveralls', ['mocha_istanbul:coveralls']);
+  // To run unit with coverage report
+  grunt.registerTask('testCoverage', ['mocha_istanbul:coverage' ]);
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'gpageinsights'/*, 'nodeunit'*/]);
-
+  //grunt.registerTask('test', ['clean', 'gpageinsights'/*, 'nodeunit'*/]);
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
+  //grunt.option('force', true);
 
 };

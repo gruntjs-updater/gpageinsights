@@ -22,29 +22,30 @@ module.exports = function(grunt) {
     
     var done = this.async(),
       options = this.data.options,
-      pagespeed;
+      pagespeed,
+      errors = [];
     
     if(options.nokey === undefined && options.key === undefined){
       options.nokey = true;
-    }
-    
-    //console.log(options);
-    
-    if(typeof options.url !== 'string' && !(options.url instanceof String)){
-      grunt.fatal("Url is required.");
-    }
+    }        
     
     pagespeed = require('gpagespeed');    
-
     pagespeed(options, function(err, result){
       var res,
         verify;
       if(err) {
-        grunt.fatal("Well, Url is required.");
-        return done(result);
+        console.log('no url');
+        grunt.fail.warn(err);
+        return done(err);
       }
       result = JSON.parse(result);
-      var errors = [];
+      
+      /*if(result.error){
+        grunt.log.error(result.error);
+        grunt.fail.warn(result.error.message);
+        return done();
+      }*/
+            
       for(res in result.formattedResults.ruleResults){
         verify = options['verify_' + res];
         //console.log('Rule: ' + res + " :" + result.formattedResults.ruleResults[res].ruleImpact + ('. verify_' + res) + " Verify: " + verify);
@@ -57,38 +58,12 @@ module.exports = function(grunt) {
       }
       if(errors.length !== 0){
         grunt.log.error(errors.join("\n"));
-        grunt.fatal('One or more criteria failed. Please see above lines for detais');        
+        grunt.fail.warn('One or more criteria failed. Please see above lines for details.');        
       }
       
-      return done(result);      
+      return done(result);
     });
 
-
-    // Iterate over all specified file groups.
-    /*this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });*/
   });
 
 };

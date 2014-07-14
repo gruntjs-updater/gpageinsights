@@ -1,5 +1,12 @@
 # gpageinsights
 
+[![Build Status](https://travis-ci.org/Weborrent/gpageinsights.svg?branch=master)](https://travis-ci.org/Weborrent/gpageinsights)
+[![Coverage Status](https://img.shields.io/coveralls/Weborrent/gpageinsights.svg)](https://coveralls.io/r/Weborrent/gpageinsights)
+
+<a href="https://david-dm.org/Weborrent/gpageinsights#info=dependencies&view=table"><img src="https://david-dm.org/Weborrent/gpageinsights.png"></a>
+<a href="https://david-dm.org/Weborrent/gpageinsights#info=devDependencies&view=table"><img src="https://david-dm.org/Weborrent/gpageinsights/dev-status.svg"/></a>
+<br/>
+
 > Ensure specific Google Page Insight tests are passing before your build passes.
 > (eg use case: I want the build to fail if Javascript and HTML are not minified.)
 > For best usage, use it with ngrok (Obtain a web url for localhost and run insights against the web url that has access to your localhost server)
