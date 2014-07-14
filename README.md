@@ -10,6 +10,7 @@
 > Ensure specific Google Page Insight tests are passing before your build passes.
 > (eg use case: I want the build to fail if Javascript and HTML are not minified.)
 > For best usage, use it with ngrok (Obtain a web url for localhost and run insights against the web url that has access to your localhost server)
+> Refer demoblog's <a href="https://github.com/prasunsultania/demoblog/blob/master/Gruntfile.js" target="_blank">Grunfile.js</a> for an example.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -45,18 +46,6 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
 ### Usage Examples
 
 #### Ensure Javascript and CSS are minfied
@@ -73,9 +62,3 @@ grunt.initConfig({
   },
 });
 ```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
