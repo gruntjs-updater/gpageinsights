@@ -5,6 +5,7 @@
 
 <a href="https://david-dm.org/Weborrent/gpageinsights#info=dependencies&view=table"><img src="https://david-dm.org/Weborrent/gpageinsights.png"></a>
 <a href="https://david-dm.org/Weborrent/gpageinsights#info=devDependencies&view=table"><img src="https://david-dm.org/Weborrent/gpageinsights/dev-status.svg"/></a>
+<a href="http://badge.fury.io/js/gpageinsights"><img src="https://badge.fury.io/js/gpageinsights.svg" alt="NPM version"></a>
 <br/>
 
 > Ensure specific Google Page Insight tests are passing before your build passes.
