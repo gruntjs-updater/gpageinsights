@@ -9,7 +9,7 @@
 <br/>
 
 > Ensure specific Google Page Insight tests are passing before your build passes.
-> (eg use case: I want the build to fail if Javascript and HTML are not minified.)
+> (eg use case: I want the build to fail if Javascript and HTML are not minified or if Impact of Render Blocking resources is too high)
 > For best usage, use it with ngrok (Obtain a web url for localhost and run insights against the web url that has access to your localhost server)
 > Refer demoblog's <a href="https://github.com/prasunsultania/demoblog/blob/master/Gruntfile.js" target="_blank">Grunfile.js</a> for an example.
 
@@ -47,10 +47,25 @@ grunt.initConfig({
 
 ### Options
 
+verify_GOOGLE_INSIGHT_PROPERTY_NAME - To ensure exact score match 
+verifymin_GOOGLE_INSIGHT_PROPERTY_NAME - To ensure minimum score match
+
+```js
+grunt.initConfig({
+  gpageinsights: {
+    options: {
+      url: MY_WEB_URL_OR_NGROK_URL.
+      verify_MinifyCss: 0, 
+      verify_MinifyJavaScript: 0,
+      minverify_MinimizeRenderBlockingResources: 1      
+    }
+  },
+});
+```
+
 ### Usage Examples
 
 #### Ensure Javascript and CSS are minfied
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
 grunt.initConfig({

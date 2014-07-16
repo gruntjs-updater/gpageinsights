@@ -1,6 +1,6 @@
 {
   "name": "gpageinsights",
-  "description": "The best Grunt plugin ever.",
+  "description": "A Grunt plugin to verify specific Google Page insights optimizations.",
   "version": "0.0.4",
   "homepage": "https://github.com/Weborrent/gpageinsights",
   "author": {
