@@ -1,7 +1,7 @@
 {
   "name": "gpageinsights",
   "description": "A Grunt plugin to verify specific Google Page insights optimizations.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/Weborrent/gpageinsights",
   "author": {
     "name": "Prasun",
